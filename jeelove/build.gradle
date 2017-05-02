@@ -1,4 +1,7 @@
-apply plugin: 'java'
+apply plugin: "java"
+apply plugin: "eclipse-wtp"
+apply plugin: "war"
+apply plugin: 'idea'
 task createDirs {
    sourceSets*.java.srcDirs*.each { it.mkdirs() }
    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
@@ -6,8 +9,88 @@ task createDirs {
 repositories {
     jcenter()
 }
-
+ext {
+    springVersion = "4.3.5.RELEASE"
+    httpclientVersion = "4.5.2"
+    jacksonVersion = "2.8.5"
+    mybatisVersion="3.2.8"
+    mybatisSpringVersion="1.2.3"
+    validatorVersion="5.2.4.Final"
+    druidVersion="1.0.18"
+    ehcacheVersion="2.6.11"
+    ehcacheWebVersion="2.0.4"
+    shiroVersion="1.2.3"
+    sitemeshVersion="2.4.2"
+    activitiVersion="5.21.0"
+    
+    commonsFileuploadVersion="1.3.1"
+    commonsBeanutilsVersion="1.9.1"
+    
+    fastjsonVersion="1.1.40"
+    guavaVersion="17.0"
+    dozerVersion="5.5.1"
+    
+    freemarkerVersion="2.3.20"
+    poiVersion="3.9"
+    mysqlDriverVersion="5.1.30"
+    xstreamVersion="1.4.7"
+    
+    
+}
+dependencies { compile fileTree(dir:'src/main/webapp/WEB-INF/lib',include:['*.jar'])}
 dependencies {
+    testCompile 'junit:junit:4.11'
     compile 'org.slf4j:slf4j-api:1.7.21'
-    testCompile 'junit:junit:4.12'
+ 	compile 'org.slf4j:slf4j-log4j12:1.7.2'
+	compile 'log4j:log4j:1.2.17'
+	compile 'cglib:cglib:3.1'
+	compile 'javax.mail:mail:1.4.7'
+	compile 'com.drewnoakes:metadata-extractor:2.6.2'
+	compile 'com.google.zxing:core:3.1.0'
+	compile 'com.codeslap:c2dm-library:1.0.0'
+	//compile 'org.springframework:spring-test:3.2.4.RELEASE'
+	
+	
+    compile (
+    	"org.springframework:spring-context-support:${springVersion}",
+        "org.springframework:spring-orm:${springVersion}",
+        "org.springframework:spring-oxm:${springVersion}",
+        "org.springframework:spring-webmvc:${springVersion}",
+        "org.springframework:spring-test:${springVersion}",
+    	"org.mybatis:mybatis:${mybatisVersion}",
+    	"org.mybatis:mybatis-spring:${mybatisSpringVersion}",
+    	"org.hibernate:hibernate-validator:${validatorVersion}",
+    	"com.alibaba:druid:${druidVersion}",
+    	"mysql:mysql-connector-java:${mysqlDriverVersion}",
+    	
+    	"net.sf.ehcache:ehcache-core:${ehcacheVersion}",
+    	"net.sf.ehcache:ehcache-web:${ehcacheWebVersion}",
+    	"redis.clients:jedis:2.5.1",
+    	"org.apache.shiro:shiro-core:${shiroVersion}",
+    	"org.apache.shiro:shiro-spring:${shiroVersion}",
+    	"org.apache.shiro:shiro-cas:${shiroVersion}",
+    	"org.apache.shiro:shiro-web:${shiroVersion}",
+    	"org.apache.shiro:shiro-ehcache:${shiroVersion}",
+    	"org.activiti:activiti-engine:${activitiVersion}",
+    	"org.activiti:activiti-spring:${activitiVersion}",
+    	"org.activiti:activiti-explorer:${activitiVersion}",
+    	"org.activiti:activiti-modeler:${activitiVersion}",
+    	"org.activiti:activiti-diagram-rest:${activitiVersion}",
+    	"opensymphony:sitemesh:${sitemeshVersion}",
+    	
+    	"commons-fileupload:commons-fileupload:${commonsFileuploadVersion}",
+    	"commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}",
+    	"com.google.guava:guava:${guavaVersion}",
+    	"com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
+    	"com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+    	"com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}",
+    	"com.fasterxml.jackson.module:jackson-module-jaxb-annotations:${jacksonVersion}",
+    	"org.freemarker:freemarker:${freemarkerVersion}",
+    	"org.apache.poi:poi:${poiVersion}",
+    	"org.apache.poi:poi-ooxml:${poiVersion}",
+    	"org.apache.poi:poi-ooxml-schemas:${poiVersion}",
+    	"net.sf.dozer:dozer:${dozerVersion}",
+    	"com.thoughtworks.xstream:xstream:${xstreamVersion}",
+    	
+    )
 }
